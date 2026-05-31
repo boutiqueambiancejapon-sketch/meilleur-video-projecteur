@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comparatif vidéoprojecteurs — FAISCEAU</title>
+<meta name="description" content="Le comparatif complet : filtrez par usage, budget et résolution. 6 vidéoprojecteurs testés et classés." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+/* ===== Comparatif ===== */
+.subhero { position:relative; padding-top: 150px; padding-bottom: 60px; overflow:hidden;
+  background: radial-gradient(80% 120% at 90% -10%, #1a1330 0%, transparent 55%), var(--ink); }
+.subhero h1 { font-size: clamp(44px, 7vw, 96px); letter-spacing:-.03em; }
+.subhero .lede { margin-top: 20px; }
+.crumbs { font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-ink-faint); display:flex; gap:10px; margin-bottom:22px; }
+.crumbs a:hover{ color:var(--beam-soft); }
+
+/* Controls */
+.controls { position:sticky; top:64px; z-index:40; background:color-mix(in oklab,var(--ink) 86%,transparent); backdrop-filter:blur(12px);
+  border-block:1px solid var(--hair-ink); padding:14px 0; }
+.controls .wrap { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; }
+.filter {
+  font-family:var(--sans); font-size:14px; font-weight:600; padding:9px 16px; border-radius:100px;
+  border:1px solid var(--hair-ink); background:transparent; color:var(--on-ink-dim); transition:all .25s;
+}
+.filter:hover { color:var(--on-ink); border-color:var(--beam); }
+.filter.active { background:var(--beam); color:#0a0710; border-color:var(--beam); }
+.sortwrap { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.sortwrap label { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--on-ink-faint); }
+.sortwrap select { font-family:var(--sans); font-size:14px; font-weight:600; padding:9px 14px; border-radius:100px; background:var(--ink-2); color:var(--on-ink); border:1px solid var(--hair-ink); cursor:pointer; }
+.count { font-family:var(--mono); font-size:12px; color:var(--on-ink-faint); }
+
+/* Comparison rows */
+.list { padding-block: 40px 110px; }
+.crow {
+  display:grid; grid-template-columns: 92px 1.3fr 1.5fr auto; gap:28px; align-items:center;
+  padding:26px 28px; border:1px solid var(--hair-ink); border-radius:18px; background:var(--ink-2);
+  margin-bottom:16px; position:relative; transition:border-color .4s, transform .4s, background .4s;
+}
+.crow:hover { border-color:color-mix(in oklab,var(--cc,var(--beam)) 55%,var(--hair-ink)); transform:translateY(-3px); }
+.crow.pick { border-color:color-mix(in oklab,var(--amber) 50%,var(--hair-ink)); background:linear-gradient(180deg,rgba(255,210,74,.05),transparent), var(--ink-2); }
+.crank { font-family:var(--display); font-weight:900; font-size:46px; line-height:1; color:var(--cc,var(--beam)); position:relative; }
+.crank small{ display:block; font-family:var(--mono); font-size:10px; letter-spacing:.16em; color:var(--on-ink-faint); margin-top:6px; font-weight:400; }
+.cthumb { aspect-ratio:4/3; border-radius:12px; overflow:hidden; background:var(--ink-3); position:relative; }
+.cthumb image-slot{ width:100%; height:100%; }
+.cinfo .brand2 { font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-ink-faint); }
+.cinfo h3 { font-family:var(--display); font-size:24px; margin:4px 0 8px; }
+.cinfo .tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+.cinfo .ctag { font-family:var(--mono); font-size:10px; letter-spacing:.08em; padding:4px 9px; border-radius:100px; border:1px solid var(--hair-ink); color:var(--on-ink-dim); }
+.cmetrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.metric b { font-family:var(--mono); font-size:19px; display:block; line-height:1; }
+.metric span { font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--on-ink-faint); display:block; margin-top:6px; }
+.metric .bar { height:3px; border-radius:3px; background:var(--hair-ink); margin-top:9px; overflow:hidden; }
+.metric .bar i { display:block; height:100%; background:var(--cc,var(--beam)); border-radius:3px; transform-origin:left; transform:scaleX(var(--v,0)); transition:transform 1s cubic-bezier(.7,0,.2,1); }
+.crow.in .metric .bar i { transform:scaleX(var(--v,0)); }
+.cbuy { display:flex; flex-direction:column; align-items:flex-end; gap:12px; min-width:180px; }
+.cprice { font-family:var(--mono); font-weight:700; font-size:26px; }
+.cprice small { display:block; text-align:right; font-size:11px; color:var(--on-ink-dim); font-weight:400; }
+.merchant { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--on-ink-dim); }
+.merchant .m { width:18px; height:18px; border-radius:5px; background:var(--beam); display:grid; place-items:center; font-family:var(--display); font-weight:900; font-size:11px; color:#0a0710; }
+.crating { display:flex; align-items:center; gap:8px; }
+.crating .rating-num { font-size:14px; }
+
+@media (max-width: 1040px){
+  .crow { grid-template-columns: 70px 1fr; row-gap:22px; }
+  .cthumb { grid-column:2; }
+  .cinfo { grid-column:2; }
+  .cmetrics { grid-column:1 / -1; }
+  .cbuy { grid-column:1 / -1; flex-direction:row; align-items:center; justify-content:space-between; }
+}
+@media (max-width:560px){ .cmetrics{ grid-template-columns:repeat(2,1fr);} .crow{ grid-template-columns:56px 1fr; padding:18px;} }
+
+/* empty */
+.empty { text-align:center; padding:80px 0; color:var(--on-ink-faint); font-family:var(--mono); }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="index.html"><span class="dot"></span>FAISCEAU</a>
+  <nav class="nav-links">
+    <a href="comparatif.html" class="active">Comparatif</a>
+    <a href="guide.html" class="hide-sm">Guide d'achat</a>
+    <a href="produit.html" class="hide-sm">Fiches</a>
+    <a class="btn nav-cta" href="guide.html">Guide d'achat <span class="arr">→</span></a>
+  </nav>
+</header>
+
+<section class="subhero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Accueil</a> <span>/</span> <span>Comparatif</span></div>
+    <span class="kicker" data-reveal="fade">6 modèles testés · 340h de mesure</span>
+    <h1 data-words style="margin-top:16px">Le comparatif<br>complet.</h1>
+    <p class="lede" data-reveal style="--d:.3s">Filtre par usage et fais ton choix. Chaque barre est une mesure réelle&nbsp;: plus elle est pleine, meilleur c'est dans sa catégorie.</p>
+  </div>
+</section>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="filters" id="filters">
+      <button class="filter active" data-f="all">Tous</button>
+      <button class="filter" data-f="Salon">Salon</button>
+      <button class="filter" data-f="Cinéphile">Cinéphile</button>
+      <button class="filter" data-f="Gaming">Gaming</button>
+      <button class="filter" data-f="Budget">Budget</button>
+    </div>
+    <div class="sortwrap">
+      <span class="count" id="count"></span>
+      <label for="sort">Trier</label>
+      <select id="sort">
+        <option value="rating">Note rédac'</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="lumens">Luminosité</option>
+        <option value="lag">Input lag</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<section class="list">
+  <div class="wrap">
+    <div id="rows"></div>
+    <div class="empty" id="empty" style="display:none">Aucun modèle dans cette catégorie.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="brand" href="index.html" style="font-size:28px"><span class="dot"></span>FAISCEAU</a>
+      <p class="disclosure">Comparateur indépendant. Liens affiliés signalés&nbsp;: une commission peut nous être versée, sans surcoût pour vous, et sans influence sur le classement.</p>
+    </div>
+    <div class="footer-base">
+      <span>© 2025 FAISCEAU</span>
+      <span class="mono"><a href="index.html">← Retour à l'accueil</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="grain" aria-hidden="true"></div>
+
+<script src="assets/image-slot.js"></script>
+<script src="assets/data.js"></script>
+<script>
+(function(){
+  const data = window.PROJECTORS.slice();
+  const rowsEl = document.getElementById('rows');
+  const emptyEl = document.getElementById('empty');
+  const countEl = document.getElementById('count');
+  let filter = 'all', sort = 'rating';
+
+  // normalize for bars (per metric, across all data)
+  const max = {
+    lumens: Math.max(...data.map(p=>p.lumens)),
+    lag: Math.max(...data.map(p=>p.lag)),
+    rating: 5,
+    price: Math.max(...data.map(p=>p.price))
+  };
+  const params = new URLSearchParams(location.search);
+  if (params.get('cat')) {
+    const c = params.get('cat');
+    document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active', b.dataset.f===c));
+    if ([...document.querySelectorAll('.filter')].some(b=>b.dataset.f===c)) filter = c;
+  }
+
+  function sorted(list){
+    const s = list.slice();
+    if (sort==='rating') s.sort((a,b)=>b.rating-a.rating);
+    if (sort==='price-asc') s.sort((a,b)=>a.price-b.price);
+    if (sort==='price-desc') s.sort((a,b)=>b.price-a.price);
+    if (sort==='lumens') s.sort((a,b)=>b.lumens-a.lumens);
+    if (sort==='lag') s.sort((a,b)=>a.lag-b.lag);
+    return s;
+  }
+  function render(){
+    let list = data.filter(p => filter==='all' || p.cat.includes(filter));
+    list = sorted(list);
+    countEl.textContent = list.length + ' modèle' + (list.length>1?'s':'');
+    emptyEl.style.display = list.length ? 'none':'block';
+    rowsEl.innerHTML = list.map((p,i)=>{
+      const lagScore = 1 - (p.lag - Math.min(...data.map(d=>d.lag))) / (max.lag - Math.min(...data.map(d=>d.lag)) || 1);
+      return `
+      <article class="crow ${p.tag==='Notre choix'?'pick':''}" style="--cc:${p.color}" data-reveal data-repeat>
+        <div class="crank">${String(i+1).padStart(2,'0')}<small>${sort==='rating'?'CLASSEMENT':'TRI'}</small></div>
+        <div class="cthumb filmframe"><image-slot id="cmp-${p.id}" placeholder="${p.brand} ${p.name}" fit="cover"></image-slot></div>
+        <div class="cinfo">
+          <div class="brand2">${p.brand} · ${p.type}</div>
+          <h3>${p.name}</h3>
+          <div class="crating">${FX.stars(p.rating)}<span class="rating-num" style="color:var(--amber)">${p.rating.toFixed(1)}</span></div>
+          <div class="tags">${p.cat.map(c=>`<span class="ctag">${c}</span>`).join('')}</div>
+        </div>
+        <div class="cmetrics">
+          <div class="metric"><b>${p.res}</b><span>RÉSOLUTION</span><div class="bar"><i style="--v:${p.res==='4K'?1:.6}"></i></div></div>
+          <div class="metric"><b>${p.lumens.toLocaleString('fr-FR')}</b><span>LUMENS</span><div class="bar"><i style="--v:${(p.lumens/max.lumens).toFixed(2)}"></i></div></div>
+          <div class="metric"><b>${p.lag} ms</b><span>INPUT LAG</span><div class="bar"><i style="--v:${lagScore.toFixed(2)}"></i></div></div>
+          <div class="metric"><b>${p.rating.toFixed(1)}</b><span>NOTE /5</span><div class="bar"><i style="--v:${(p.rating/5).toFixed(2)}"></i></div></div>
+        </div>
+        <div class="cbuy">
+          ${p.tag==='Notre choix'?'<span class="badge-pick">★ Notre choix</span>':`<span class="ctag" style="font-family:var(--mono)">${p.tag}</span>`}
+          <div class="cprice">${FX.euro(p.price)}<small>prix indicatif</small></div>
+          <div class="merchant"><span class="m">a</span> dispo sur Amazon</div>
+          <a class="btn" href="produit.html" style="padding:11px 20px;font-size:14px">Voir l'offre <span class="arr">→</span></a>
+        </div>
+      </article>`;
+    }).join('');
+    // re-arm reveal for new nodes
+    if (window.FAISCEAU && window.FAISCEAU.rescan) window.FAISCEAU.rescan();
+  }
+
+  document.getElementById('filters').addEventListener('click', e=>{
+    const b = e.target.closest('.filter'); if(!b) return;
+    filter = b.dataset.f;
+    document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active', x===b));
+    render();
+  });
+  document.getElementById('sort').addEventListener('change', e=>{ sort=e.target.value; render(); });
+  render();
+})();
+</script>
+<script src="assets/anim.js"></script>
+</body>
+</html>

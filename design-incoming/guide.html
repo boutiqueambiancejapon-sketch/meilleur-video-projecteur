@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guide d'achat vidéoprojecteur — FAISCEAU</title>
+<meta name="description" content="Lumens, focale, contraste, écran : le guide qui traduit la fiche technique en décisions simples." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+/* ===== Guide ===== */
+.subhero { position:relative; padding-top:160px; padding-bottom:70px; overflow:hidden;
+  background: radial-gradient(70% 120% at 15% -10%, #1a1330 0%, transparent 55%), var(--ink); }
+.subhero h1 { font-size: clamp(46px, 8vw, 110px); letter-spacing:-.035em; }
+.crumbs { font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-ink-faint); display:flex; gap:10px; margin-bottom:22px; }
+.crumbs a:hover{ color:var(--beam-soft); }
+
+/* sticky chapter index */
+.guidewrap { display:grid; grid-template-columns: 220px 1fr; gap: clamp(30px,6vw,80px); }
+@media (max-width:920px){ .guidewrap{ grid-template-columns:1fr; } .toc{ display:none; } }
+.toc { position:sticky; top:110px; align-self:start; }
+.toc h4 { font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--on-ink-faint); margin:0 0 18px; }
+.toc a { display:flex; gap:12px; align-items:baseline; padding:9px 0; color:var(--on-ink-dim); font-size:15px; transition:color .25s; border-left:2px solid transparent; padding-left:14px; margin-left:-16px; }
+.toc a .n { font-family:var(--mono); font-size:11px; color:var(--on-ink-faint); }
+.toc a:hover, .toc a.active { color:var(--on-ink); border-color:var(--beam); }
+.toc a.active .n { color:var(--beam-soft); }
+
+.chapter { padding-block: clamp(40px,7vh,90px); border-top:1px solid var(--hair-ink); }
+.chapter:first-child{ border-top:none; padding-top:0; }
+.chapter .ch-no { font-family:var(--mono); font-size:13px; color:var(--beam-soft); letter-spacing:.1em; }
+.chapter h2 { font-size: clamp(30px,4.4vw,56px); margin:14px 0 22px; letter-spacing:-.025em; }
+.chapter p { color:var(--on-ink-dim); font-size:18px; max-width:62ch; }
+.chapter p + p { margin-top:18px; }
+.chapter strong { color:var(--on-ink); font-weight:600; }
+
+/* lumens scale viz */
+.lumscale { margin:36px 0; display:grid; gap:10px; }
+.lumrow { display:grid; grid-template-columns: 130px 1fr auto; gap:16px; align-items:center; padding:14px 0; border-bottom:1px solid var(--hair-ink); }
+.lumrow .env { font-weight:600; }
+.lumrow .track { height:8px; border-radius:8px; background:var(--ink-3); overflow:hidden; }
+.lumrow .track i { display:block; height:100%; border-radius:8px; background:linear-gradient(90deg,var(--beam-deep),var(--beam),var(--amber)); transform-origin:left; transform:scaleX(var(--v)); transition:transform 1.1s cubic-bezier(.7,0,.2,1); transition-delay:var(--d,0s); }
+.chapter.in .lumrow .track i, .lumrow.shown .track i { transform:scaleX(var(--v)); }
+.lumrow .val { font-family:var(--mono); font-size:14px; color:var(--on-ink); }
+.lumrow .val small{ color:var(--on-ink-faint); }
+
+/* throw diagram */
+.throwgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:34px 0; }
+@media (max-width:680px){ .throwgrid{ grid-template-columns:1fr; } }
+.throwcard { border:1px solid var(--hair-ink); border-radius:16px; padding:22px; background:var(--ink-2); transition:border-color .4s, transform .4s; }
+.throwcard:hover{ border-color:var(--beam); transform:translateY(-3px); }
+.throwcard .ratio { font-family:var(--display); font-weight:900; font-size:32px; color:var(--beam-soft); }
+.throwcard h4 { font-family:var(--display); font-size:19px; margin:6px 0 8px; }
+.throwcard p { font-size:14.5px; margin:0; }
+
+/* tech compare */
+.techtable { width:100%; border-collapse:collapse; margin:30px 0; }
+.techtable th, .techtable td { text-align:left; padding:16px 14px; border-bottom:1px solid var(--hair-ink); font-size:15px; }
+.techtable th { font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--on-ink-faint); font-weight:400; }
+.techtable td:first-child { font-weight:600; color:var(--on-ink); }
+.techtable .good { color:#36d6a0; } .techtable .mid{ color:var(--amber);} .techtable .bad{ color:#ff6b6b; }
+
+/* pull paper section */
+.paperblock { background:var(--paper); color:var(--paper-ink); }
+.paperblock .chapter p{ color:#4a4654; }
+.paperblock .chapter strong{ color:var(--paper-ink); }
+.paperblock .chapter{ border-color:var(--hair-paper); }
+.bigquote { font-family:var(--display); font-weight:800; font-size:clamp(28px,4vw,48px); line-height:1.05; letter-spacing:-.02em; max-width:20ch; }
+.bigquote .hl { color:var(--beam-deep); }
+
+.callout { display:flex; gap:18px; padding:22px; border:1px solid var(--hair-ink); border-radius:16px; background:linear-gradient(180deg,rgba(155,108,255,.06),transparent); margin:30px 0; }
+.callout .mk { font-family:var(--display); font-weight:900; color:var(--beam); font-size:26px; line-height:1; }
+.callout p{ margin:0; font-size:15.5px; }
+.paperblock .callout{ border-color:var(--hair-paper); background:linear-gradient(180deg,rgba(108,63,240,.07),transparent); }
+
+.guide-visual { aspect-ratio:16/10; border-radius:18px; overflow:hidden; margin:30px 0; }
+.guide-visual image-slot{ width:100%; height:100%; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="index.html"><span class="dot"></span>FAISCEAU</a>
+  <nav class="nav-links">
+    <a href="comparatif.html">Comparatif</a>
+    <a href="guide.html" class="active hide-sm">Guide d'achat</a>
+    <a href="produit.html" class="hide-sm">Fiches</a>
+    <a class="btn nav-cta" href="comparatif.html">Voir le comparatif <span class="arr">→</span></a>
+  </nav>
+</header>
+
+<section class="subhero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Accueil</a> <span>/</span> <span>Guide d'achat</span></div>
+    <span class="kicker" data-reveal="fade">Le guide</span>
+    <h1 data-words style="margin-top:16px">Tout comprendre<br>avant d'acheter.</h1>
+    <p class="lede" data-reveal style="--d:.3s">Quatre notions décident de 90&nbsp;% de votre satisfaction. On les traduit en décisions simples — sans jargon inutile.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:30px">
+  <div class="wrap guidewrap">
+    <aside class="toc" id="toc">
+      <h4>Chapitres</h4>
+      <a href="#lumens" class="active"><span class="n">01</span> Lumens &amp; luminosité</a>
+      <a href="#focale"><span class="n">02</span> Focale &amp; recul</a>
+      <a href="#techno"><span class="n">03</span> Laser, LED ou lampe</a>
+      <a href="#ecran"><span class="n">04</span> L'écran (ou le mur)</a>
+    </aside>
+
+    <div class="guidebody">
+      <!-- 01 -->
+      <article class="chapter" id="lumens" data-reveal data-repeat>
+        <div class="ch-no">01 — Luminosité</div>
+        <h2 data-words>Combien de lumens<br>pour ma pièce&nbsp;?</h2>
+        <p>Le <strong>lumen ANSI</strong> mesure la lumière réellement projetée. Plus la pièce est lumineuse, plus il en faut. Méfiez-vous des «&nbsp;lumens LED&nbsp;» gonflés des fiches marketing&nbsp;: on ne compare que des lumens ANSI mesurés.</p>
+        <div class="lumscale" data-group="0.1">
+          <div class="lumrow"><span class="env">Pièce noire</span><span class="track"><i style="--v:.35"></i></span><span class="val">1000–1500 <small>ANSI</small></span></div>
+          <div class="lumrow"><span class="env">Salon tamisé</span><span class="track"><i style="--v:.55"></i></span><span class="val">1800–2500 <small>ANSI</small></span></div>
+          <div class="lumrow"><span class="env">Lumière du jour</span><span class="track"><i style="--v:.8"></i></span><span class="val">2700–3500 <small>ANSI</small></span></div>
+          <div class="lumrow"><span class="env">Plein soleil</span><span class="track"><i style="--v:1"></i></span><span class="val">3500+ <small>ANSI</small></span></div>
+        </div>
+        <div class="callout"><span class="mk">!</span><p><strong>La règle d'or&nbsp;:</strong> pour une image de 100&nbsp;pouces dans un salon que vous n'assombrissez pas totalement, visez au minimum <strong>2500 lumens ANSI</strong>. En dessous, l'image «&nbsp;passe&nbsp;» mais perd son éclat dès qu'un rayon entre.</p></div>
+      </article>
+
+      <!-- 02 -->
+      <article class="chapter" id="focale" data-reveal data-repeat>
+        <div class="ch-no">02 — Recul</div>
+        <h2 data-words>Quelle focale<br>pour quel recul&nbsp;?</h2>
+        <p>La <strong>focale</strong> détermine la distance nécessaire entre le projecteur et le mur pour une taille d'image donnée. C'est souvent ce qui condamne un achat&nbsp;: trop de recul exigé pour la pièce.</p>
+        <div class="throwgrid" data-group="0.1">
+          <div class="throwcard" data-reveal><div class="ratio">0.25:1</div><h4>Ultra-courte (UST)</h4><p>Posé contre le mur, 100" à ~30&nbsp;cm. Idéal salon sans installation.</p></div>
+          <div class="throwcard" data-reveal><div class="ratio">0.8:1</div><h4>Courte focale</h4><p>Grande image avec peu de recul. Bon compromis petites pièces.</p></div>
+          <div class="throwcard" data-reveal><div class="ratio">1.5:1</div><h4>Focale standard</h4><p>Le plafond du salon, 3–4&nbsp;m de recul. La plus polyvalente.</p></div>
+        </div>
+        <div class="guide-visual filmframe" data-reveal="scale" data-parallax="0.1"><image-slot id="guide-focale" placeholder="Schéma — recul & taille d'image" fit="cover"></image-slot></div>
+      </article>
+
+      <!-- 03 -->
+      <article class="chapter" id="techno" data-reveal data-repeat>
+        <div class="ch-no">03 — Source lumineuse</div>
+        <h2 data-words>Laser, LED<br>ou lampe&nbsp;?</h2>
+        <p>La source lumineuse dicte la durée de vie, le contraste et le silence. En 2025, le <strong>laser</strong> s'est imposé sur le haut de gamme, la <strong>LED</strong> sur le nomade, la <strong>lampe</strong> ne tient plus que sur l'entrée de gamme.</p>
+        <table class="techtable">
+          <thead><tr><th>Source</th><th>Durée de vie</th><th>Contraste</th><th>Silence</th><th>Prix</th></tr></thead>
+          <tbody>
+            <tr><td>Laser</td><td class="good">20 000 h</td><td class="good">Excellent</td><td class="good">Très silencieux</td><td class="bad">€€€</td></tr>
+            <tr><td>LED</td><td class="good">30 000 h</td><td class="mid">Bon</td><td class="good">Silencieux</td><td class="good">€€</td></tr>
+            <tr><td>Lampe</td><td class="bad">4 000 h</td><td class="mid">Variable</td><td class="bad">Ventilation</td><td class="good">€</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 paper block for rhythm -->
+<section class="section paperblock" id="ecran">
+  <div class="wrap guidewrap">
+    <div></div>
+    <article class="chapter" style="border:none;padding-top:0" data-reveal data-repeat>
+      <div class="ch-no" style="color:var(--beam-deep)">04 — Surface</div>
+      <h2 data-words>L'écran change<br>tout. Même un<br>bon mur suffit.</h2>
+      <p>Un projecteur ne vaut que par la surface qui reçoit sa lumière. Un <strong>mur blanc mat</strong> propre fait déjà un excellent travail. Mais un vrai écran apporte un gain de contraste et d'uniformité immédiatement visible.</p>
+      <div class="bigquote" style="margin:30px 0">Un écran <span class="hl">ALR</span> rend les noirs en plein jour ce qu'un mur ne fera jamais.</div>
+      <p>Pour un projecteur <strong>UST</strong>, l'écran <strong>ALR</strong> (à rejet de lumière ambiante) n'est pas un luxe&nbsp;: c'est lui qui rend l'image regardable rideaux ouverts. Pour une salle dédiée et sombre, un écran blanc gain&nbsp;1.0 reste la référence de neutralité.</p>
+      <div class="callout"><span class="mk">★</span><p><strong>Le bon réflexe&nbsp;:</strong> budgétez l'écran <strong>dès l'achat du projecteur</strong>, pas après. Comptez 10 à 20&nbsp;% du prix du projecteur pour une surface à sa hauteur.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section center">
+  <div class="wrap">
+    <span class="kicker" style="justify-content:center" data-reveal="fade">Prêt à choisir&nbsp;?</span>
+    <h2 class="display" data-words style="margin:18px auto 0;max-width:16ch">Au comparatif.</h2>
+    <p class="lede" data-reveal style="margin:20px auto 0;text-align:center">On a fait le tri. Six modèles, classés, mesurés, pour chaque usage.</p>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:32px" data-reveal>
+      <a class="btn" href="comparatif.html">Voir les 6 modèles <span class="arr">→</span></a>
+      <a class="btn btn--ghost" href="produit.html">Voir une fiche</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="brand" href="index.html" style="font-size:28px"><span class="dot"></span>FAISCEAU</a>
+      <p class="disclosure">Comparateur indépendant. Conseils fondés sur la mesure et l'expérience, jamais sur la commission.</p>
+    </div>
+    <div class="footer-base"><span>© 2025 FAISCEAU</span><span class="mono"><a href="index.html">← Retour à l'accueil</a></span></div>
+  </div>
+</footer>
+
+<div class="grain" aria-hidden="true"></div>
+
+<script src="assets/image-slot.js"></script>
+<script>
+/* TOC scroll-spy (scroll-position based) */
+(function(){
+  const links = [...document.querySelectorAll('.toc a')];
+  const sections = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function spy(){
+    let idx = 0;
+    sections.forEach((s,i)=>{ if (s.getBoundingClientRect().top < window.innerHeight*0.4) idx = i; });
+    links.forEach((a,i)=>a.classList.toggle('active', i===idx));
+  }
+  window.addEventListener('scroll', spy, {passive:true}); spy();
+})();
+</script>
+<script src="assets/anim.js"></script>
+</body>
+</html>
