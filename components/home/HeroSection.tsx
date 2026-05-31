@@ -1,408 +1,77 @@
 /**
- * HeroSection — above-fold.
- * Supports 3 hero variants: split, centered, minimal.
- * Effects configurable: aurora, subtle, none.
- * Server Component (les enfants clients sont importés inline).
+ * HeroSection — FAISCEAU hero, dark cinéma.
+ * Beam canvas animé en fond + headline "Le bon faisceau change tout le film." +
+ * card "Notre choix" à droite (image projecteur, marque, nom, prix).
  */
 
-import Balancer from 'react-wrap-balancer'
-import { AuroraBackground } from '@/components/effects/AuroraBackground'
-import { NoiseOverlay } from '@/components/effects/NoiseOverlay'
-import { AnimatedHeading } from '@/components/effects/AnimatedHeading'
-import { RotatingWords } from '@/components/effects/RotatingWords'
-import { HeroVisual } from './HeroVisual'
+import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { BeamCanvas } from '@/components/effects/BeamCanvas'
 import { niche } from '@/niche.config'
-import { t } from '@/lib/i18n'
-import { MagneticButton } from '@/components/motion/MagneticButton'
+import { getAllProducts, type Product } from '@/lib/products'
 
-/* ── Shared styles ── */
-
-const headingFont = 'var(--next-font-display), system-ui, sans-serif'
-
-const containerStyle = {
-  maxWidth: '1280px',
-  margin: '0 auto',
-  padding: 'var(--space-20) var(--space-6)',
-  width: '100%',
-  position: 'relative' as const,
-  zIndex: 3,
+function pickFeatured(): Product | null {
+  const all = getAllProducts()
+  return all.find((p) => p.badge === 'Notre choix') ?? all[0] ?? null
 }
-
-const primaryCtaStyle = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: 'var(--space-2)',
-  padding: 'var(--space-3) var(--space-6)',
-  backgroundColor: 'var(--accent-1)',
-  color: '#fff',
-  fontWeight: 700,
-  fontSize: '15px',
-  borderRadius: '8px',
-  textDecoration: 'none',
-  letterSpacing: '-0.01em',
-  transition: 'opacity 150ms ease, transform 150ms ease',
-} as const
-
-const secondaryCtaStyle = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: 'var(--space-2)',
-  padding: 'var(--space-3) var(--space-6)',
-  border: '1px solid var(--border)',
-  color: 'var(--text-primary)',
-  fontWeight: 500,
-  fontSize: '15px',
-  borderRadius: '8px',
-  textDecoration: 'none',
-  letterSpacing: '-0.01em',
-  transition: 'border-color 150ms ease',
-} as const
-
-/* ── Variant: split (default) ── */
-
-function HeroSplit() {
-  return (
-    <div style={containerStyle}>
-      <div className="hero-grid">
-        {/* Colonne gauche — texte */}
-        <div>
-          {/* Eyebrow */}
-          <AnimatedHeading
-            as="p"
-            delay={0}
-            duration={600}
-            style={{
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: 'var(--accent-1)',
-              marginBottom: 'var(--space-5)',
-            }}
-          >
-            {t('hero.eyebrow')}
-          </AnimatedHeading>
-
-          {/* H1 — ligne 1 */}
-          <AnimatedHeading
-            as="h1"
-            delay={120}
-            duration={900}
-            style={{
-              fontFamily: headingFont,
-              fontSize: 'clamp(2rem, 5.5vw, 4.5rem)',
-              fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: '0',
-              color: 'var(--text-primary)',
-              marginBottom: '0.15em',
-            }}
-          >
-            <Balancer>{niche.heroPrefix}</Balancer>
-          </AnimatedHeading>
-
-          {/* H1 — ligne 2 avec mot rotatif */}
-          <AnimatedHeading
-            as="h1"
-            delay={280}
-            duration={900}
-            style={{
-              fontFamily: headingFont,
-              fontSize: 'clamp(2rem, 5.5vw, 4.5rem)',
-              fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: '0',
-              marginBottom: 'var(--space-8)',
-              display: 'flex',
-              alignItems: 'baseline',
-              flexWrap: 'wrap',
-              gap: '0.25em',
-            }}
-          >
-            <RotatingWords
-              words={niche.rotatingWords}
-              interval={2600}
-              style={{ color: 'var(--accent-1)' }}
-            />
-            <Balancer><span className="text-gradient-hero">{niche.heroSuffix}</span></Balancer>
-          </AnimatedHeading>
-
-          {/* Sous-titre */}
-          <AnimatedHeading
-            as="p"
-            delay={440}
-            duration={700}
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-              color: 'var(--text-secondary)',
-              maxWidth: '520px',
-              lineHeight: 1.65,
-              marginBottom: 'var(--space-10)',
-            }}
-          >
-            {niche.subtitle}
-          </AnimatedHeading>
-
-          {/* CTAs */}
-          <AnimatedHeading
-            as="p"
-            delay={580}
-            duration={600}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 'var(--space-4)',
-              alignItems: 'center',
-            }}
-          >
-            <Link href={niche.ctaPrimary.url} style={{ textDecoration: 'none' }}>
-              <MagneticButton strength={0.25}>
-                <span style={primaryCtaStyle} className="btn-primary">
-                  {niche.ctaPrimary.text}
-                </span>
-              </MagneticButton>
-            </Link>
-            <Link href={niche.ctaSecondary.url} style={secondaryCtaStyle}>
-              {niche.ctaSecondary.text}
-            </Link>
-          </AnimatedHeading>
-        </div>
-
-        {/* Colonne droite — navigation familles */}
-        <HeroVisual />
-      </div>
-    </div>
-  )
-}
-
-/* ── Variant: centered ── */
-
-function HeroCentered() {
-  return (
-    <div style={containerStyle}>
-      <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* Eyebrow */}
-        <AnimatedHeading
-          as="p"
-          delay={0}
-          duration={600}
-          style={{
-            fontSize: '12px',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: 'var(--accent-1)',
-            marginBottom: 'var(--space-5)',
-          }}
-        >
-          {t('hero.eyebrow')}
-        </AnimatedHeading>
-
-        {/* H1 — ligne 1 */}
-        <AnimatedHeading
-          as="h1"
-          delay={120}
-          duration={900}
-          style={{
-            fontFamily: headingFont,
-            fontSize: 'clamp(2rem, 5.5vw, 4.5rem)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '0',
-            color: 'var(--text-primary)',
-            marginBottom: '0.15em',
-          }}
-        >
-          <Balancer>{niche.heroPrefix}</Balancer>
-        </AnimatedHeading>
-
-        {/* H1 — ligne 2 avec mot rotatif */}
-        <AnimatedHeading
-          as="h1"
-          delay={280}
-          duration={900}
-          style={{
-            fontFamily: headingFont,
-            fontSize: 'clamp(2rem, 5.5vw, 4.5rem)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '0',
-            marginBottom: 'var(--space-8)',
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '0.25em',
-          }}
-        >
-          <RotatingWords
-            words={niche.rotatingWords}
-            interval={2600}
-            style={{ color: 'var(--accent-1)' }}
-          />
-          <Balancer><span className="text-gradient-hero">{niche.heroSuffix}</span></Balancer>
-        </AnimatedHeading>
-
-        {/* Sous-titre */}
-        <AnimatedHeading
-          as="p"
-          delay={440}
-          duration={700}
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            color: 'var(--text-secondary)',
-            maxWidth: '600px',
-            lineHeight: 1.65,
-            marginBottom: 'var(--space-10)',
-          }}
-        >
-          {niche.subtitle}
-        </AnimatedHeading>
-
-        {/* CTAs */}
-        <AnimatedHeading
-          as="p"
-          delay={580}
-          duration={600}
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 'var(--space-4)',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Link href={niche.ctaPrimary.url} style={{ textDecoration: 'none' }}>
-            <MagneticButton strength={0.25}>
-              <span style={primaryCtaStyle} className="btn-primary">
-                {niche.ctaPrimary.text}
-              </span>
-            </MagneticButton>
-          </Link>
-          <Link href={niche.ctaSecondary.url} style={secondaryCtaStyle}>
-            {niche.ctaSecondary.text}
-          </Link>
-        </AnimatedHeading>
-      </div>
-    </div>
-  )
-}
-
-/* ── Variant: minimal ── */
-
-function HeroMinimal() {
-  return (
-    <div style={containerStyle}>
-      <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {/* H1 — single line, larger font */}
-        <AnimatedHeading
-          as="h1"
-          delay={120}
-          duration={900}
-          style={{
-            fontFamily: headingFont,
-            fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '-0.01em',
-            color: 'var(--text-primary)',
-            marginBottom: 'var(--space-8)',
-          }}
-        >
-          <Balancer>{niche.heroPrefix} <span className="text-gradient-hero">{niche.heroSuffix}</span></Balancer>
-        </AnimatedHeading>
-
-        {/* Sous-titre */}
-        <AnimatedHeading
-          as="p"
-          delay={300}
-          duration={700}
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-            color: 'var(--text-secondary)',
-            maxWidth: '600px',
-            lineHeight: 1.65,
-            marginBottom: 'var(--space-10)',
-          }}
-        >
-          {niche.subtitle}
-        </AnimatedHeading>
-
-        {/* Single CTA */}
-        <AnimatedHeading
-          as="p"
-          delay={460}
-          duration={600}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Link href={niche.ctaPrimary.url} style={{ textDecoration: 'none' }}>
-            <MagneticButton strength={0.25}>
-              <span style={primaryCtaStyle} className="btn-primary">
-                {niche.ctaPrimary.text}
-              </span>
-            </MagneticButton>
-          </Link>
-        </AnimatedHeading>
-      </div>
-    </div>
-  )
-}
-
-/* ── Effects wrapper ── */
-
-function HeroEffects({ children }: { children: React.ReactNode }) {
-  const heroVariant = niche.style.hero ?? 'split'
-  const effects = niche.style.effects ?? 'aurora'
-
-  // Minimal hero forces no aurora/noise
-  if (heroVariant === 'minimal' || effects === 'none') {
-    return (
-      <div className="hero-aurora" style={{ position: 'relative', backgroundColor: 'var(--bg-primary)' }}>
-        {children}
-      </div>
-    )
-  }
-
-  if (effects === 'subtle') {
-    return (
-      <div className="hero-aurora" style={{ position: 'relative', backgroundColor: 'var(--bg-primary)' }}>
-        <NoiseOverlay opacity={0.035} />
-        {children}
-      </div>
-    )
-  }
-
-  // effects === 'aurora' (default)
-  return (
-    <AuroraBackground className="hero-aurora">
-      <NoiseOverlay opacity={0.035} />
-      {children}
-    </AuroraBackground>
-  )
-}
-
-/* ── Main export ── */
 
 export function HeroSection() {
-  const heroVariant = niche.style.hero ?? 'split'
+  const featured = pickFeatured()
 
-  let content: React.ReactNode
-  switch (heroVariant) {
-    case 'centered':
-      content = <HeroCentered />
-      break
-    case 'minimal':
-      content = <HeroMinimal />
-      break
-    case 'split':
-    default:
-      content = <HeroSplit />
-      break
-  }
-
-  return <HeroEffects>{content}</HeroEffects>
+  return (
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100svh',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        background: 'radial-gradient(120% 90% at 80% 110%, #1a1330 0%, transparent 55%), radial-gradient(80% 70% at 10% 0%, #14101f 0%, transparent 60%), var(--bg-primary)',
+      }}
+    >
+      <BeamCanvas />
+      <div style={{ position: 'relative', zIndex: 3, width: '100%', maxWidth: '1280px', margin: '0 auto', padding: 'clamp(96px, 12vh, 140px) clamp(20px, 5vw, 72px) 60px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: 'clamp(30px, 5vw, 80px)', alignItems: 'center' }} className="hero-grid-faisceau">
+          <div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--beam-soft)', display: 'inline-flex', alignItems: 'center', gap: '0.7em' }}>
+              <span style={{ width: '26px', height: '1px', background: 'var(--beam)', display: 'inline-block' }} />
+              Comparateur indépendant · 2026
+            </span>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(52px, 8.4vw, 124px)', lineHeight: 0.9, letterSpacing: '-0.035em', fontWeight: 900, textWrap: 'balance', margin: '18px 0 0', color: 'var(--text-primary)' }}>
+              {niche.heroPrefix}{' '}
+              <span style={{ background: 'linear-gradient(180deg, #fff 0%, var(--beam-soft) 70%, var(--beam) 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', textShadow: '0 0 40px color-mix(in oklab, var(--beam) 60%, transparent)', position: 'relative' }}>change</span>{' '}
+              {niche.heroSuffix}
+            </h1>
+            <p style={{ fontSize: 'clamp(18px, 1.7vw, 23px)', lineHeight: 1.5, color: 'var(--text-secondary)', maxWidth: '56ch', margin: '26px 0 0' }}>{niche.subtitle}</p>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '34px' }}>
+              <Link href={niche.ctaPrimary.url} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6em', padding: '15px 26px', background: 'var(--beam)', color: '#0a0710', fontFamily: 'var(--font-primary)', fontWeight: 600, fontSize: '16px', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 14px 40px -12px var(--beam)' }}>
+                {niche.ctaPrimary.text} <ArrowRight size={18} />
+              </Link>
+              <Link href={niche.ctaSecondary.url} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6em', padding: '15px 26px', background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border)', fontFamily: 'var(--font-primary)', fontWeight: 600, fontSize: '16px', borderRadius: '100px', textDecoration: 'none' }}>{niche.ctaSecondary.text}</Link>
+            </div>
+          </div>
+          {featured && (
+            <aside style={{ position: 'relative', border: '1px solid var(--border)', borderRadius: '20px', background: 'linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01))', backdropFilter: 'blur(6px)', padding: '16px' }}>
+              <span style={{ position: 'absolute', top: '24px', left: '24px', zIndex: 4, fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#1a1206', background: 'var(--accent-2)', padding: '6px 11px', borderRadius: '100px', fontWeight: 700 }}>★ Notre choix</span>
+              <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', aspectRatio: '16 / 10', background: 'var(--bg-surface-2)' }}>
+                {featured.image && <Image src={featured.image} alt={`${featured.brand ?? ''} ${featured.name} — vidéoprojecteur ${featured.specs?.type ?? ''}`} fill sizes="(max-width: 940px) 100vw, 500px" style={{ objectFit: 'cover' }} priority />}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 6px 4px', gap: '12px' }}>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{featured.brand}</div>
+                  <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '21px', fontWeight: 700, margin: '4px 0 0', color: 'var(--text-primary)' }}>{featured.name}</h2>
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '20px', textAlign: 'right', color: 'var(--text-primary)' }}>
+                  {featured.prix}
+                  {featured.specs?.type && <small style={{ color: 'var(--text-secondary)', fontWeight: 400, fontSize: '12px', display: 'block' }}>{featured.specs.type}</small>}
+                </div>
+              </div>
+            </aside>
+          )}
+        </div>
+      </div>
+      <style>{`@media (max-width: 940px) { .hero-grid-faisceau { grid-template-columns: 1fr !important; gap: 40px !important; } }`}</style>
+    </section>
+  )
 }
