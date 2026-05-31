@@ -1,153 +1,82 @@
 /**
- * Footer — 3 colonnes éditoriales + disclaimer affilié.
- * Fond --bg-surface avec diagonal clip-path en haut pour raccordement visuel.
- * Server Component — zéro JS.
+ * Footer — footer FAISCEAU.
+ * 4 colonnes (Comparer, Apprendre, Produits, À propos) + brand + disclosure affiliée.
+ * Server Component, zéro JS.
  */
 
 import Link from 'next/link'
 import { niche } from '@/niche.config'
-import { t } from '@/lib/i18n'
+import { getAllProducts } from '@/lib/products'
 
-function currentYear() {
+function currentYear(): number {
   return new Date().getFullYear()
 }
 
-const COL_OUTILS = [
-  { href: '/comparer', label: t('nav.compare') },
-  ...(niche.quiz.enabled ? [{ href: '/quiz', label: t('tools.quiz.eyebrow') }] : []),
-  ...(niche.simulator.enabled ? [{ href: '/simulateur', label: t('nav.simulator') }] : []),
-  { href: '/deals', label: niche.dealWord.charAt(0).toUpperCase() + niche.dealWord.slice(1) },
-]
-
-const COL_BLOG = niche.categories.slice(0, 4).map((cat) => ({
-  href: `/blog/${cat.slug}`,
-  label: cat.label,
-}))
-
-const COL_APROPOS = [
-  ...(niche.author.slug ? [{ href: `/auteurs/${niche.author.slug}`, label: t('footer.author') }] : []),
-  { href: '/mentions-legales', label: t('footer.legalNotice') },
-  { href: '/confidentialite', label: t('footer.privacy') },
-]
-
-type FooterColProps = {
-  title: string
-  links: { href: string; label: string }[]
-}
-
-function FooterCol({ title, links }: FooterColProps) {
-  if (links.length === 0) return null
-  return (
-    <div>
-      <p
-        style={{
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: 'var(--text-secondary)',
-          marginBottom: 'var(--space-4)',
-        }}
-      >
-        {title}
-      </p>
-      <ul role="list" style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-        {links.map(({ href, label }) => (
-          <li key={href}>
-            <Link
-              href={href}
-              style={{
-                fontSize: '14px',
-                color: 'var(--text-secondary)',
-                textDecoration: 'none',
-                transition: 'color 150ms ease',
-              }}
-              className="footer-link"
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-// Parse logo: if it contains "·", split into bold + light parts
-const footerLogoText = niche.logo ?? niche.siteName
-const footerHasDot = footerLogoText.includes('·')
-const footerLogoBold = footerHasDot ? footerLogoText.split('·')[0] : footerLogoText
-const footerLogoLight = footerHasDot ? footerLogoText.split('·').slice(1).join('·') : ''
+type Col = { title: string; links: Array<{ href: string; label: string }> }
 
 export function Footer() {
+  const products = getAllProducts().slice(0, 4)
+
+  const cols: Col[] = [
+    {
+      title: 'Comparer',
+      links: [
+        { href: '/comparatif', label: 'Tous les modèles' },
+        ...niche.categories.map((c) => ({ href: `/comparatif?cat=${c.slug}`, label: c.label })),
+      ],
+    },
+    {
+      title: 'Apprendre',
+      links: [
+        { href: '/guide', label: "Guide d'achat" },
+        { href: '/guide#lumens', label: 'Lumens & luminosité' },
+        { href: '/guide#focale', label: 'Focale & recul' },
+        { href: '/guide#ecran', label: 'Écrans' },
+      ],
+    },
+    {
+      title: 'Fiches produit',
+      links: products.map((p) => ({ href: `/produit/${p.slug}`, label: `${p.brand} ${p.name}` })),
+    },
+    {
+      title: 'À propos',
+      links: [
+        ...(niche.author.slug ? [{ href: `/auteurs/${niche.author.slug}`, label: niche.author.name }] : []),
+        { href: '/mentions-legales', label: 'Mentions légales' },
+        { href: '/confidentialite', label: 'Confidentialité' },
+      ],
+    },
+  ]
+
   return (
-    <footer
-      style={{
-        position: 'relative',
-        backgroundColor: 'var(--bg-surface)',
-        marginTop: 'var(--space-24)',
-        clipPath: 'polygon(0 32px, 100% 0, 100% 100%, 0 100%)',
-        paddingTop: 'calc(var(--space-16) + 32px)',
-        paddingBottom: 'var(--space-12)',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '0 var(--space-6)',
-        }}
-      >
-        {/* Grille 3 colonnes + logo */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-            gap: 'var(--space-10)',
-            marginBottom: 'var(--space-12)',
-          }}
-        >
-          {/* Identité */}
-          <div>
-            <Link
-              href="/"
-              aria-label={`${niche.siteName} — accueil`}
-              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'baseline', gap: '1px', marginBottom: 'var(--space-4)' }}
-            >
-              <span style={{ fontFamily: 'var(--next-font-display), system-ui, sans-serif', fontWeight: 800, fontSize: '15px', color: 'var(--text-primary)', letterSpacing: '0' }}>{footerLogoBold}</span>
-              {footerHasDot && <>
-                <span style={{ color: 'var(--accent-1)', fontWeight: 800, fontSize: '15px' }}>·</span>
-                <span style={{ fontFamily: 'var(--next-font-display), system-ui, sans-serif', fontWeight: 400, fontSize: '15px', color: 'var(--text-secondary)', letterSpacing: '0' }}>{footerLogoLight}</span>
-              </>}
-            </Link>
-            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '220px' }}>
-              {niche.tagline}
-            </p>
-          </div>
-
-          <FooterCol title={t('footer.tools')} links={COL_OUTILS} />
-          {COL_BLOG.length > 0 && <FooterCol title={t('nav.blog')} links={COL_BLOG} />}
-          <FooterCol title={t('footer.about')} links={COL_APROPOS} />
+    <footer style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)', borderTop: '1px solid var(--border)', padding: '72px clamp(20px, 5vw, 72px) 40px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gap: '48px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '11px', fontFamily: 'var(--font-display)', fontWeight: 800, letterSpacing: '-0.02em', fontSize: '28px', color: 'var(--text-primary)', textDecoration: 'none' }}>
+            <span style={{ position: 'relative', width: '14px', height: '14px' }}>
+              <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--beam)', boxShadow: '0 0 14px 2px var(--beam)' }} />
+            </span>
+            {niche.logo}
+          </Link>
+          <p style={{ fontSize: '12.5px', color: 'var(--text-muted)', maxWidth: '70ch', lineHeight: 1.5, margin: 0 }}>
+            {niche.siteName} est un comparateur indépendant. Certains liens sont affiliés : si vous achetez via l&apos;un d&apos;eux, je touche une commission, sans surcoût pour vous. Cela ne change rien à mes classements, fondés sur la mesure.
+          </p>
         </div>
-
-        {/* Bas — séparateur + disclaimer */}
-        <div
-          style={{
-            borderTop: '1px solid var(--border)',
-            paddingTop: 'var(--space-6)',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 'var(--space-4)',
-          }}
-        >
-          <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: 0 }}>
-            © {currentYear()} {niche.siteName} — {t('footer.independent')}
-          </p>
-          <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: 0, textAlign: 'right' }}>
-            {t('footer.affiliateDisclaimer', { store: niche.defaultStore })}
-          </p>
+        <div style={{ display: 'flex', gap: 'clamp(40px, 8vw, 120px)', flexWrap: 'wrap' }}>
+          {cols.map((col) => col.links.length === 0 ? null : (
+            <div key={col.title}>
+              <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', margin: '0 0 16px', fontWeight: 400 }}>
+                {col.title}
+              </h4>
+              {col.links.map((l) => (
+                <Link key={l.href} href={l.href} style={{ display: 'block', padding: '6px 0', color: 'var(--text-secondary)', fontSize: '15px', textDecoration: 'none' }}>{l.label}</Link>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px', flexWrap: 'wrap', paddingTop: '28px', borderTop: '1px solid var(--border)', color: 'var(--text-muted)', fontSize: '13px' }}>
+          <span>© {currentYear()} {niche.siteName} — Comparateur indépendant de vidéoprojecteurs</span>
+          <span style={{ fontFamily: 'var(--font-mono)' }}>Fait dans le noir, à la lumière d&apos;un projecteur.</span>
         </div>
       </div>
     </footer>
