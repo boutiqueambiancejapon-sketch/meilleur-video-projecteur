@@ -1,24 +1,36 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Unbounded } from 'next/font/google'
+import { Archivo, Archivo_Narrow, Space_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { niche } from '@/niche.config'
 import { t } from '@/lib/i18n'
 import './globals.css'
 
-// ── Fonts — remplacer à l'init par les fonts choisies pour la niche ──
-const fontPrimary = Space_Grotesk({
+// ── Fonts — FAISCEAU design system ──
+// Body : Archivo (lecture, paragraphes, navigation)
+// Display : Archivo Narrow (substitut éditorial à Archivo Expanded, non distribué via Google Fonts — on garde la même famille Archivo pour la cohérence)
+// Mono : Space Mono (kicker, prix, specs tabulaires)
+const fontPrimary = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--next-font-primary',
   adjustFontFallback: true,
   preload: true,
   display: 'swap',
 })
 
-const fontDisplay = Unbounded({
+const fontDisplay = Archivo_Narrow({
   subsets: ['latin'],
-  weight: ['400', '700', '800'],
+  weight: ['500', '600', '700'],
   variable: '--next-font-display',
+  adjustFontFallback: true,
+  preload: true,
+  display: 'swap',
+})
+
+const fontMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--next-font-mono',
   adjustFontFallback: true,
   preload: true,
   display: 'swap',
@@ -56,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${fontPrimary.variable} ${fontDisplay.variable}`}
+      className={`${fontPrimary.variable} ${fontDisplay.variable} ${fontMono.variable}`}
     >
       {/* Script inline : applique data-theme avant tout rendu pour éviter le flash */}
       <head>

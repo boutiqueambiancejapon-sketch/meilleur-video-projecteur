@@ -119,81 +119,114 @@ export type NicheConfig = {
   branch: string           // branche principale — PAS toujours "main" ! Le CMS l'utilise pour lire/écrire le contenu.
 }
 
-// ─── Valeurs par défaut (placeholder) ───────────────────────────────────
+// ─── Valeurs par défaut (placeholder) ────────────────────────────────────
 // Ces valeurs permettent au site de build avec un template vierge. Elles sont
 // remplacées soit par Claude Code lors de l'intégration des outputs Claude Design,
 // soit à la main lors d'un setup manuel.
 
 export const niche: NicheConfig = {
-  siteName: '10min-template',
-  domain: 'example.com',
-  tagline: 'Trouvez le bon choix en 10 minutes',
+  siteName: 'Meilleur Vidéo-Projecteur',
+  domain: 'meilleur-videoprojecteur.fr',
+  tagline: 'Le comparateur cinéphile pour trouver le bon faisceau',
 
-  entity: 'produit',
-  entities: 'produits',
+  entity: 'projecteur',
+  entities: 'projecteurs',
   entityVerb: 'choisir',
-  dealWord: 'deals',
+  dealWord: 'offres',
 
-  heroPrefix: 'Choisir votre',
-  heroSuffix: 'en 10 minutes',
-  rotatingWords: ['produit'],
-  subtitle: 'Comparateur indépendant, quiz personnalisé et simulateur — tout pour décider vite et bien.',
-  ctaPrimary: { text: 'Comparer →', url: '/comparer' },
-  ctaSecondary: { text: 'Quiz personnalisé', url: '/quiz' },
+  heroPrefix: 'Le bon faisceau',
+  heroSuffix: 'tout le film.',
+  rotatingWords: ['change', 'révèle', 'transforme'],
+  subtitle: 'Je teste, je mesure, je classe les vidéoprojecteurs — du salon baigné de lumière à la salle noire du cinéphile, jusqu\'au gaming à 16 ms.',
+  ctaPrimary: { text: 'Trouver mon projecteur', url: '/comparatif' },
+  ctaSecondary: { text: 'Le guide d\'achat', url: '/guide' },
 
-  categories: [],
+  categories: [
+    { slug: 'salon', label: 'Home-cinéma', accent: '#9B6CFF', description: 'De la grande image même rideaux ouverts.' },
+    { slug: 'cinephile', label: 'Cinéphile', accent: '#ff7a4d', description: 'Noirs profonds, contraste, étalonnage juste.' },
+    { slug: 'gaming', label: 'Gaming', accent: '#ffd24a', description: 'Input lag minuscule, haute fréquence, VRR.' },
+    { slug: 'budget', label: 'Malin & nomade', accent: '#36d6a0', description: 'Le cinéma partout, sans se ruiner.' },
+  ],
 
-  quiz: { enabled: true, question: '', criteria: [] },
-  comparator: { enabled: true, criteria: [] },
-  simulator: { enabled: true, title: '', description: '' },
+  quiz: {
+    enabled: true,
+    question: 'Quel vidéoprojecteur pour vous ?',
+    criteria: ['budget', 'pièce', 'usage', 'recul', 'écran'],
+  },
+  comparator: {
+    enabled: true,
+    criteria: ['résolution', 'lumens ANSI', 'input lag', 'contraste', 'prix'],
+  },
+  simulator: {
+    enabled: false,
+    title: '',
+    description: '',
+  },
 
   style: {
     mode: 'dark',
     hero: 'split',
     effects: 'aurora',
     cards: 'bordered',
-    uiStyle: '',
+    uiStyle: 'Editorial Grid / Magazine',
   },
   palette: {
-    accent1: '#FF3D57',
-    accent2: '#FFD23F',
-    accent3: '#3DFFC0',
-    accent4: '#7B61FF',
-    accent5: '#3D9BFF',
-    bgPrimary: '#0A0A0F',
-    bgSurface: '#13131A',
-    bgSurface2: '#1C1C26',
-    textPrimary: '#F0F0F5',
-    textSecondary: '#9090A8',
-    textMuted: '#55556A',
+    accent1: '#9B6CFF',  // beam (violet) — accent principal cinéma
+    accent2: '#FFD24A',  // amber — badge "notre choix"
+    accent3: '#36d6a0',  // green — catégorie budget/nomade
+    accent4: '#FF7A4D',  // orange — catégorie cinéphile/salle dédiée
+    accent5: '#5FB0FF',  // bleu — catégorie polyvalent
+    bgPrimary: '#0B0A0F',
+    bgSurface: '#131019',
+    bgSurface2: '#1C1824',
+    textPrimary: '#EDEAF2',
+    textSecondary: '#9B96A8',
+    textMuted: '#5B5667',
   },
-  fonts: { display: 'Unbounded', body: 'Space Grotesk' },
+  fonts: { display: 'Archivo Expanded', body: 'Archivo' },
 
-  author: { name: '', slug: '', title: '', bio: '', tone: [], noGo: [], formulations: [] },
+  author: {
+    name: 'Mathias',
+    slug: 'mathias',
+    title: 'Critique vidéo-projecteur indépendant',
+    bio: 'Cinéphile depuis toujours. J\'ai installé mon premier vidéoprojecteur en 2012 — un Optoma 720p qui m\'a fait découvrir Blade Runner comme jamais. Depuis, j\'en ai vu passer une cinquantaine, et je n\'ai pas l\'intention de m\'arrêter. Ici je teste, je mesure, je classe — toujours avec mes propres yeux, jamais avec la fiche constructeur.',
+    tone: ['passionné', 'chaleureux', 'accessible'],
+    noGo: ['révolutionnaire', 'incroyable', 'game-changer', 'vous allez adorer', 'à ne pas manquer'],
+    formulations: [
+      'Honnêtement, ce que j\'ai vu,',
+      'Sur grand écran, ça se voit.',
+      'À ce prix-là, on attend que',
+    ],
+  },
 
-  logo: '10min·template',
-  homeSections: ['ticker', 'deals', 'articles', 'categories', 'tools', 'author'],
+  logo: 'Meilleur Vidéo-Projecteur',
+  homeSections: ['categories', 'articles', 'author'],
 
   signature: {
-    anchor: '',
-    oneRule: '',
-    inspiration: [],
-    forbidden: [],
-    components: [],
+    anchor: 'Faisceau lumineux animé (canvas hero) + grain de film + scanlines en overlay',
+    oneRule: 'Aucun bouton sans flèche → à droite. La typographie display est en Archivo Expanded, jamais en italique.',
+    inspiration: ['Première magazine', 'Mad Movies', 'Projector Reviews', 'Les Numériques (tests vidéoprojecteurs)'],
+    forbidden: [
+      'gradients pastel violet→cyan typiques des sites IA',
+      'illustrations cartoon/3D',
+      'badges brillants à dégradés',
+      'photos de produits sur fond pastel saturé',
+    ],
+    components: ['pullQuote', 'tabularStat', 'editorialFootnote', 'lettrine'],
   },
 
-  affiliateTag: '',
+  affiliateTag: 'ambiancejap0a-21',
   defaultStore: 'Amazon',
 
   defaultLocale: 'fr',
   locales: ['fr'],
 
   vercelRegion: 'fra1',
-  repo: '',
+  repo: 'boutiqueambiancejapon-sketch/meilleur-video-projecteur',
   branch: 'main',
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────
+// ─── Helpers ────────────────────────────────────────────────────
 
 /** Accent CSS variable for a given category index. */
 const ACCENT_VARS = ['var(--accent-1)', 'var(--accent-2)', 'var(--accent-3)', 'var(--accent-4)', 'var(--accent-5)']
