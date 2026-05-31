@@ -117,3 +117,21 @@ export function getAllProductSlugs(): string[] {
     .filter((f) => f.endsWith('.yaml') && !f.startsWith('_'))
     .map((f) => f.replace(/\.yaml$/, ''))
 }
+
+/**
+ * Resolve the primary affiliate URL for a product.
+ * Prefers the stickyCta store, falls back to first link, then to Amazon URL from ASIN.
+ */
+export function getPrimaryLink(product: Product): string {
+  if (product.links && product.links.length > 0) {
+    if (product.stickyCta) {
+      const priority = product.links.find(
+        (l) => l.store.toLowerCase() === product.stickyCta!.toLowerCase()
+      )
+      if (priority) return priority.url
+    }
+    return product.links[0].url
+  }
+  if (product.asin) return `https://www.amazon.fr/dp/${product.asin}`
+  return ''
+}
