@@ -1,0 +1,46 @@
+slug: xgimi-horizon-ultra
+asin: B0CB3FN1FM
+brand: XGIMI
+name: Horizon Ultra
+categorie: salon
+secondaryCategorie: cinephile
+badge: "Polyvalent premium"
+prix: "949 €"
+prixFull: "1 139 €"
+rating: 4.3
+ratingCount: 320
+hook: "Le 4K Dolby Vision qui transforme un salon en salle. Compromis intelligent entre éclat laser et finesse LED grâce à la techno Dual Light."
+active: true
+stickyCta: Amazon
+image: /images/products/xgimi-horizon-ultra.jpg
+accentColor: "#5FB0FF"
+specs:
+  type: "Laser/LED Dual Light"
+  tech: "DLP 0.47\""
+  resolution: "4K UHD (3840×2160)"
+  lumensIso: 2300
+  lumensAnsi: 1300
+  contrast: "242:1 mesuré (1 500:1 dynamique)"
+  inputLag: "18 ms (mode gaming)"
+  refresh: "4K/60 · 1080p/120"
+  noise: "30 dB (mode éco)"
+  throwRatio: "1.2:1 — 1.5:1 (zoom optique)"
+  lensShift: "Vertical"
+  os: "Android TV 11"
+  hdr: "Dolby Vision · HDR10 · HLG"
+  connectivity: "2× HDMI 2.1, USB-C, Wi-Fi 6, Bluetooth"
+  speakers: "Harman Kardon 2 × 12 W"
+  laserLife: "25 000 h"
+pros:
+  - "Dolby Vision sur un projecteur sub-1000 €, rare"
+  - "Système Dual Light : éclat laser + précision LED"
+  - "Son Harman Kardon vraiment exploitable"
+  - "Zoom optique = liberté de placement"
+cons:
+  - "Lumens annoncés vs mesurés : écart notable (1300 ANSI réels)"
+  - "Mode turbo très audible"
+  - "Android TV 11 (pas Google TV : moins de Netflix nativement)"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0CB3FN1FM"
+verdict: "Si vous ne mettez pas 1 600 € dans le 20 Pro, le Horizon Ultra reste l'option Dolby Vision la plus crédible sous 1 000 €."

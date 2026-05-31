@@ -1,0 +1,47 @@
+slug: xgimi-horizon-20-pro
+asin: B0FMXY4ZKG
+brand: XGIMI
+name: Horizon 20 Pro
+categorie: cinephile
+secondaryCategorie: salon
+badge: "Notre choix"
+prix: "1 657 €"
+prixFull: "1 989 €"
+rating: 4.5
+ratingCount: 47
+hook: "Tri-laser RGB 4K, 4 100 lumens ISO, Dolby Vision et IMAX Enhanced. Et 1 ms d'input lag en 1080p/240Hz — il rend même les gamers jaloux."
+active: true
+stickyCta: Amazon
+image: /images/products/xgimi-horizon-20-pro.jpg
+accentColor: "#9B6CFF"
+specs:
+  type: "Laser tri-laser RGB"
+  tech: "DLP 0.47\""
+  resolution: "4K UHD (3840×2160)"
+  lumensIso: 4100
+  lumensAnsi: 3000
+  contrast: "20 000:1 (avec Dynamic Black)"
+  inputLag: "1 ms (1080p/240Hz) · 3 ms (4K/60)"
+  refresh: "4K/60 · 1080p/240"
+  noise: "30 dB"
+  throwRatio: "1.2:1 — 1.5:1 (zoom optique)"
+  lensShift: "Vertical ±25%"
+  os: "Google TV avec Netflix"
+  hdr: "Dolby Vision · HDR10 · IMAX Enhanced"
+  connectivity: "3× HDMI 2.1 (eARC), USB-C, Wi-Fi 6E, Bluetooth 5.3"
+  speakers: "Harman Kardon 2 × 12 W"
+  laserLife: "25 000 h"
+pros:
+  - "Tri-laser RGB qui couvre 110% du BT.2020"
+  - "Input lag de gaming monitor (1 ms en 1080p/240Hz)"
+  - "Zoom optique + lens shift : installable n'importe où"
+  - "Dolby Vision + IMAX Enhanced, rare à ce niveau"
+  - "Son Harman Kardon dispense d'une barre"
+cons:
+  - "Tarif premium assumé"
+  - "Encombrement du meuble TV"
+  - "Mode haute puissance audible (jet d'avion dans une pièce calme)"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0FMXY4ZKG"
+verdict: "Le faisceau le plus complet du marché en 2026. Cinéphile et gamer dans le même boîtier — un exploit que peu de marques tiennent vraiment."

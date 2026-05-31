@@ -1,0 +1,44 @@
+slug: benq-th575i
+asin: B0GTSP7893
+brand: BenQ
+name: TH575i
+categorie: gaming
+badge: "Roi du gaming"
+prix: "429 €"
+rating: 3.8
+ratingCount: 24
+hook: "16,7 ms d'input lag à 1080p/60Hz, 3 800 lumens ANSI, Game Mode dédié. Le seul projecteur du comparatif vraiment taillé pour la PS5 et la manette."
+active: true
+stickyCta: Amazon
+image: /images/products/benq-th575i.jpg
+accentColor: "#FFD24A"
+specs:
+  type: "Lampe DLP"
+  tech: "DLP 0.65\" DMD"
+  resolution: "Full HD 1080p (1920×1080)"
+  lumensAnsi: 3800
+  contrast: "15 000:1"
+  inputLag: "16,7 ms (1080p/60Hz)"
+  refresh: "1080p/120"
+  noise: "32 dB (mode éco)"
+  throwRatio: "1.49:1 — 1.64:1"
+  zoom: "1.1× optique"
+  os: "Dongle Google TV inclus"
+  hdr: "HDR10"
+  connectivity: "2× HDMI, USB, Audio-out"
+  speakers: "1 × 5 W"
+  lampLife: "15 000 h (mode éco)"
+pros:
+  - "Input lag de 16,7 ms : la projection enfin gaming-grade"
+  - "3 800 ANSI lumens — jouable rideaux ouverts"
+  - "Dongle Google TV livré → Netflix natif"
+  - "Game Mode dédié, contraste haut"
+cons:
+  - "1080p seulement (pas de 4K)"
+  - "Lampe (15 000 h vs 25 000 h laser)"
+  - "Note Amazon modeste (3.8) : à confirmer sur la durée"
+  - "Speaker interne anecdotique : barre de son obligatoire"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0GTSP7893"
+verdict: "Si vous jouez plus que vous ne regardez, c'est le bon choix. Les 1080p font le compromis raisonnable pour viser le sub-16 ms qu'aucun 4K abordable n'atteint."

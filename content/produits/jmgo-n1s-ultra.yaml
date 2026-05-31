@@ -1,0 +1,45 @@
+slug: jmgo-n1s-ultra
+asin: B0D1TZHGG2
+brand: JMGO
+name: N1S Ultra
+categorie: cinephile
+secondaryCategorie: salon
+badge: "Best value tri-laser"
+prix: "234 €"
+rating: 4.4
+ratingCount: 156
+hook: "Le tri-laser RGB le moins cher du marché. Gimbal intégré, 3 000 ANSI lumens mesurés, 110 % BT.2020 — il défie des projecteurs trois fois plus chers."
+active: true
+stickyCta: Amazon
+image: /images/products/jmgo-n1s-ultra.jpg
+accentColor: "#36D6A0"
+specs:
+  type: "Triple laser RGB"
+  tech: "DLP 0.47\""
+  resolution: "4K UHD (3840×2160)"
+  lumensIso: 2800
+  lumensAnsi: 3000
+  contrast: "1 600:1 (FOFO mesuré)"
+  inputLag: "17 ms (mode gaming)"
+  refresh: "4K/60 · 1080p/120"
+  noise: "29 dB"
+  throwRatio: "1.2:1"
+  gimbal: "Rotation 360° intégrée"
+  os: "Android TV 11 · Netflix"
+  hdr: "HDR10"
+  colorGamut: "110 % BT.2020"
+  connectivity: "HDMI 2.1, USB-C, Wi-Fi 6, Bluetooth"
+  speakers: "Dynaudio 2 × 10 W"
+pros:
+  - "Tri-laser à 234 € : rapport qualité-prix imbattable"
+  - "Gimbal intégré : projection au plafond, par terre, partout"
+  - "3 000 ANSI lumens réels, mesurés"
+  - "Son Dynaudio crédible pour la taille"
+cons:
+  - "Pas de Dolby Vision"
+  - "Contraste natif moyen (1 600:1)"
+  - "Construction plastique malgré le prix monté"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0D1TZHGG2"
+verdict: "À 234 €, c'est un coup. Le tri-laser RGB à ce prix n'existait pas il y a deux ans. Pour les cinéphiles malins qui ne veulent pas attendre Black Friday."

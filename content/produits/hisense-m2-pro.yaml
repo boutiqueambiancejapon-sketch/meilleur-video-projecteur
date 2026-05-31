@@ -1,0 +1,45 @@
+slug: hisense-m2-pro
+asin: B0F8R67B8J
+brand: Hisense
+name: M2 Pro
+categorie: salon
+secondaryCategorie: cinephile
+badge: "Mini 4K"
+prix: "752 €"
+rating: 4.5
+ratingCount: 89
+hook: "Le mini 4K qui ne sacrifie ni le triple laser ni le Dolby Vision. Compact, élégant, posable où vous voulez — il s'invite dans une bibliothèque."
+active: true
+stickyCta: Amazon
+image: /images/products/hisense-m2-pro.jpg
+accentColor: "#36D6A0"
+specs:
+  type: "Triple laser (Trichroma)"
+  tech: "DLP 0.47\""
+  resolution: "4K UHD (3840×2160)"
+  lumensIso: 1300
+  lumensAnsi: 1355
+  contrast: "1 000:1 natif"
+  inputLag: "16 ms (mode jeu)"
+  refresh: "4K/60 · 1080p/240"
+  noise: "28 dB"
+  throwRatio: "1.27:1"
+  lensShift: "Aucun"
+  os: "Vidaa OS · Netflix inclus"
+  hdr: "Dolby Vision · HDR10"
+  connectivity: "HDMI 2.1 eARC, USB, Wi-Fi 6, Bluetooth"
+  speakers: "Stéréo intégré 2 × 12 W"
+  laserLife: "25 000 h"
+pros:
+  - "Triple laser sur format compact, c'est rare"
+  - "Dolby Vision, image 65\" à 200\""
+  - "Auto-réglage AI très efficace (Automagic AI Adjusting)"
+  - "Lumens annoncés = lumens mesurés, honnêteté technique"
+cons:
+  - "Pas de lens shift (positionnement contraint)"
+  - "Vidaa OS moins riche que Google TV"
+  - "Contraste natif modeste (1000:1)"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0F8R67B8J"
+verdict: "Si votre salon n'a pas la place pour un poids lourd, le M2 Pro est le compromis le plus complet sous 800 €."

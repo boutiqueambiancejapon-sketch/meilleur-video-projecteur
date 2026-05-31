@@ -1,0 +1,43 @@
+slug: lg-cinebeam-s-pu615u
+asin: B0FZLRYLNP
+brand: LG
+name: CineBeam S PU615U
+categorie: salon
+badge: "UST sans recul"
+prix: "896 €"
+rating: 5.0
+ratingCount: 12
+hook: "Posé à 40 cm du mur, 100 pouces de cinéma. Le triple laser UST signé LG, avec un contraste dynamique à six chiffres et 154 % de DCI-P3."
+active: true
+stickyCta: Amazon
+image: /images/products/lg-cinebeam-s-pu615u.jpg
+accentColor: "#FF7A4D"
+specs:
+  type: "Triple laser UST"
+  tech: "DLP 0.47\""
+  resolution: "4K UHD (3840×2160)"
+  lumensAnsi: 500
+  lumensMeasured: 615
+  contrast: "450 000:1 dynamique"
+  refresh: "60 Hz"
+  throwRatio: "0.25:1 (UST)"
+  throwDistance: "8 cm pour 40\" · 39 cm pour 100\""
+  os: "webOS"
+  hdr: "HDR10"
+  colorGamut: "154 % DCI-P3"
+  connectivity: "HDMI, USB, Wi-Fi, Bluetooth, Dolby Atmos"
+  speakers: "2.0 Dolby Atmos"
+pros:
+  - "Format UST : 100\" à 40 cm du mur, sans plafond percé"
+  - "Triple laser → couleurs justes (154 % DCI-P3)"
+  - "Marque LG : SAV et longévité reconnus"
+  - "Dolby Atmos intégré"
+cons:
+  - "Seulement 500 ANSI lumens — ALR obligatoire en plein jour"
+  - "Pas de Dolby Vision (HDR10 seulement)"
+  - "60 Hz max : oubliez le gaming sérieux"
+  - "Image max 100\" (vs 150\" sur la concurrence UST)"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0FZLRYLNP"
+verdict: "Pour qui veut un projecteur invisible et un mur de cinéma sans aucun travaux. L'écran ALR n'est pas un luxe, c'est le partenaire obligatoire."

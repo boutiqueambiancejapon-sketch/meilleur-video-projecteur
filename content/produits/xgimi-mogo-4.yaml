@@ -1,0 +1,46 @@
+slug: xgimi-mogo-4
+asin: B0F5HDQPRV
+brand: XGIMI
+name: MoGo 4
+categorie: budget
+badge: "Nomade premium"
+prix: "533 €"
+prixFull: "639 €"
+rating: 4.6
+ratingCount: 412
+hook: "Le cinéma qui se glisse dans le sac. Batterie 5 heures avec trépied PowerBase, son Harman Kardon, Google TV avec Netflix licence — la séance ciné se déplace."
+active: true
+stickyCta: Amazon
+image: /images/products/xgimi-mogo-4.jpg
+accentColor: "#9B6CFF"
+specs:
+  type: "LED nomade"
+  tech: "DLP 0.23\""
+  resolution: "Full HD 1080p (1920×1080)"
+  lumensIso: 450
+  lumensAnsi: 330
+  contrast: "350:1 mesuré"
+  inputLag: "n/d"
+  refresh: "60 Hz"
+  noise: "28 dB"
+  throwRatio: "1.2:1"
+  rotation: "360° (gimbal PowerBase)"
+  battery: "71 Wh · 2,5 h (mode éco) · 5 h (avec PowerBase)"
+  weight: "1.31 kg"
+  os: "Google TV · Netflix licence"
+  hdr: "HDR10"
+  connectivity: "HDMI 2.1 eARC, USB-C, Wi-Fi 5, Bluetooth"
+  speakers: "Harman Kardon 2 × 6 W"
+pros:
+  - "Batterie 5 h avec PowerBase, autonomie réelle"
+  - "Rotation 360° : projecte au plafond pour s'endormir devant un film"
+  - "Compact (1,3 kg) et bien construit"
+  - "Google TV + Netflix licencié natif"
+cons:
+  - "450 lumens : à oublier en plein jour"
+  - "Pas de 4K (1080p suffit pour un nomade)"
+  - "Son Harman Kardon présent mais limité pour vraiment grand écran"
+links:
+  - store: Amazon
+    url: "https://www.amazon.fr/dp/B0F5HDQPRV"
+verdict: "Pour la soirée jardin l'été, le bivouac, la résidence secondaire. Pas le projecteur de votre salon, mais l'allié des moments où vous emmenez le cinéma ailleurs."

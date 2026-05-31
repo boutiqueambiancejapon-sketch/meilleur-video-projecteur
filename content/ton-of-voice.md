@@ -1,48 +1,39 @@
-# Ton de voix — [TODO : nom du site]
-
-<!--
-Ce fichier définit la voix éditoriale du site forké.
-
-Il est rempli automatiquement lors du premier appel au skill `ton-of-voice` :
-Claude conduit un mini-interview de 8 questions, puis génère ce fichier à
-partir de tes réponses.
-
-Une fois rempli, ce fichier est la source de vérité pour TOUT contenu
-rédactionnel du site. Pour redéfinir la voix : supprimer ce fichier ou
-y remettre des `TODO`, puis relancer le skill (n'importe quel trigger de
-rédaction : « rédige un article », « écris une fiche », etc.).
--->
+# Ton de voix — Meilleur Vidéo-Projecteur
 
 ## Qui parle
-TODO
+1ère personne — « je ». Mathias, critique vidéo-projecteur indépendant. Pas de « on » collectif, parce que le site est porté par UN cinéphile, pas une rédaction.
 
 ## Audience cible
-TODO
+Des amateurs de cinéma à la maison qui s'apprêtent à dépenser entre 200 et 2 000 €. Niveau intermédiaire : ils connaissent la différence entre 4K et 1080p, ils savent ce qu'est Dolby Vision, mais ils confondent encore lumens ANSI et lumens LED marketing. Ils arrivent ici parce qu'ils ont marre des comparatifs qui se contentent de recopier la fiche constructeur. Ils veulent une opinion tranchée d'un cinéphile, pas un classement Amazon.
 
 ## Ton (trois mots)
-- TODO
-- TODO
-- TODO
+- Passionné
+- Chaleureux
+- Accessible
 
 ## Ce qu'on n'est PAS (trois mots)
-- TODO
-- TODO
-- TODO
+- Pas marketing
+- Pas hype
+- Pas influenceur
 
 ## Tu / vous
-TODO
+Vouvoiement. Mathias respecte ses lecteurs comme des adultes qui ont fait l'effort de chercher avant d'acheter. Le vouvoiement maintient la posture critique — on n'est pas dans la complicité forcée des chaînes YouTube tech.
 
 ## Formulations signature
-- TODO
-- TODO
-- TODO
+- « Honnêtement, ce que j'ai vu... » (introduit l'expérience subjective, pas la fiche)
+- « Sur grand écran, ça se voit. » (rappelle que la projection révèle ce que la TV cache)
+- « À ce prix-là, on attend que... » (cadre toujours le verdict dans le budget)
 
 ## Vocabulaire banni (au-delà des tics IA génériques)
-- TODO
-- TODO
-- TODO
-- TODO
-- TODO
+- révolutionnaire
+- incroyable / époustouflant
+- game-changer
+- vous allez adorer
+- à ne pas manquer
+- immersion / immersif (sauf si vraiment justifié techniquement)
+- expérience cinéma (formulation creuse)
 
 ## Inspirations
-- TODO
+- *Première* et les chroniques techniques de *Mad Movies* — vouvoiement de cinéphile passionné, expertise sans jargon gratuit
+- Les tests de *Les Numériques* sur les vidéoprojecteurs — exigence de mesure (ANSI réel, contraste mesuré, input lag chronométré)
+- *Projector Reviews* (US) — la culture du test long, en pièce noire ET salon lumineux, pour parler du vrai usage et pas du labo
